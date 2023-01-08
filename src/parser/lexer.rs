@@ -65,6 +65,7 @@ impl<'a> Iterator for Lexer<'a> {
                 self.make_token(Token::Int(number))
             }
             '+' => self.single_token(Token::Plus),
+            '*' => self.single_token(Token::Star),
             '"' => {
                 self.peekable.next();
 
