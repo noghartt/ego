@@ -5,6 +5,7 @@ pub enum Token<'a> {
 
     Id(&'a str),
     Int(usize),
+    Str(String),
 
     LPar,          // (
     RPar,          // )
