@@ -64,6 +64,7 @@ impl<'a> Iterator for Lexer<'a> {
                 let number = slice.parse::<usize>().unwrap();
                 self.make_token(Token::Int(number))
             }
+            '+' => self.single_token(Token::Plus),
             '"' => {
                 self.peekable.next();
 
