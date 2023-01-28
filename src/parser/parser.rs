@@ -96,8 +96,6 @@ impl<'a> Parser<'a> {
     }
 
     pub fn parse_atom(&mut self) -> Result<'a, Box<Expr>> {
-        println!("parser - {:?}", self);
-
         let Some(token) = self.lexer.peek() else {
             return Err(SyntaxError::UnexpectedEOF)
         };
@@ -187,7 +185,6 @@ impl<'a> Parser<'a> {
                 span: token.span,
             })
         } else {
-            println!("{:?}", token);
             Err(SyntaxError::UnexpectedToken(token.to_owned()))
         }
     }
