@@ -4,6 +4,8 @@ use super::location::Spanned;
 pub enum Operation {
     Add,
     Mult,
+    Slash,
+    Minus,
 }
 
 pub type Expr = Spanned<ExprKind>;
@@ -23,10 +25,17 @@ pub struct BinaryNode {
 }
 
 #[derive(Debug)]
+pub struct UnaryNode {
+    pub operation: Operation,
+    pub expr: Box<Expr>,
+}
+
+#[derive(Debug)]
 pub enum ExprKind {
     Let(LetNode),
     Ident(String),
     Binary(BinaryNode),
+    Unary(UnaryNode),
     // TODO: Turn it into an i64
     Int(usize),
 }

@@ -13,10 +13,10 @@ pub struct Lexer<'a> {
 impl<'a> Lexer<'a> {
     pub fn new(input: &str) -> Lexer {
         Lexer {
-        input,
-        peekable: input.chars().peekable(),
-        start_pos: Default::default(),
-        current_pos: Default::default(),
+            input,
+            peekable: input.chars().peekable(),
+            start_pos: Default::default(),
+            current_pos: Default::default(),
         }
     }
 
@@ -66,6 +66,10 @@ impl<'a> Iterator for Lexer<'a> {
             }
             '+' => self.single_token(Token::Plus),
             '*' => self.single_token(Token::Star),
+            '/' => self.single_token(Token::Slash),
+            '-' => self.single_token(Token::Minus),
+            '(' => self.single_token(Token::LPar),
+            ')' => self.single_token(Token::RPar),
             '"' => {
                 self.peekable.next();
 

@@ -13,6 +13,8 @@ pub enum Token<'a> {
 
     Plus,          // +
     Star,          // *
+    Slash,         // /
+    Minus,         // -
 
     Error,
 }
