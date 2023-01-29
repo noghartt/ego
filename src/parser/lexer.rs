@@ -68,6 +68,7 @@ impl<'a> Iterator for Lexer<'a> {
             '*' => self.single_token(Token::Star),
             '/' => self.single_token(Token::Slash),
             '-' => self.single_token(Token::Minus),
+            '^' => self.single_token(Token::Caret),
             '(' => self.single_token(Token::LPar),
             ')' => self.single_token(Token::RPar),
             '"' => {

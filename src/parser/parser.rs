@@ -70,16 +70,32 @@ impl<'a> Parser<'a> {
     }
 
     pub fn parse_mult(&mut self) -> Result<'a, Box<Expr>> {
-        let mut left = self.parse_atom()?;
+        let mut left = self.parse_pow()?;
         while self.check(Token::Star) || self.check(Token::Slash) {
             let Some(token) = self.next() else {
                 return Err(SyntaxError::UnexpectedEOF)
             };
-            let right = self.parse_atom()?;
+            let right = self.parse_pow()?;
             left = Box::new(Expr {
                 span: left.span.start..right.span.end,
                 data: ExprKind::Binary(BinaryNode {
                     operation: if token.data == Token::Star { Operation::Mult } else { Operation::Slash },
+                    left,
+                    right,
+                }),
+            });
+        }
+        Ok(left)
+    }
+
+    pub fn parse_pow(&mut self) -> Result<'a, Box<Expr>> {
+        let mut left = self.parse_atom()?;
+        while let Ok(_) = self.eat(Token::Caret) {
+            let right = self.parse_atom()?;
+            left = Box::new(Expr {
+                span: left.span.start..right.span.end,
+                data: ExprKind::Binary(BinaryNode {
+                    operation: Operation::Caret,
                     left,
                     right,
                 }),

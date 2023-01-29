@@ -6,6 +6,7 @@ pub enum Operation {
     Mult,
     Slash,
     Minus,
+    Caret,
 }
 
 pub type Expr = Spanned<ExprKind>;

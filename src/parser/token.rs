@@ -15,6 +15,7 @@ pub enum Token<'a> {
     Star,          // *
     Slash,         // /
     Minus,         // -
+    Caret,         // ^
 
     Error,
 }
